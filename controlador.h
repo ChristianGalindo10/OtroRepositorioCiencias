@@ -58,6 +58,8 @@ class Controlador{
 		void iniciar();
 		//Métodos para manejar listas
 		void mostrarListaProfes();
+		void mostrarProfes();
+		void mostrarProfe(Profesor p);
 		void mostrarListaCortes(Profesor p);
 		void mostrarListaNotas(Corte cor);
 		void mostrarListaContenedores(Nota nt);
@@ -65,7 +67,10 @@ class Controlador{
 		
 		void insertarProfes();
 		
-		
+		//Métodos modificar profesor
+		void modificarNomProfe(long long int id,Profesor p);
+		void modificarApProfe(long long int id, Profesor p);
+		void modificarNumClasesProfe(long long int id, Profesor p);
 		
 		//Métodos profesores
 		lista<Profesor> getProfes();
@@ -126,6 +131,20 @@ void Controlador::mostrarListaProfes(){
 		mostrarListaCortes(p);
 	}
 }
+void Controlador::mostrarProfes(){
+		cout<<"Profes:"<<endl;
+	if(profesores.get_tam()==0){
+		cout<<"Lista vacia";
+	}
+	for(int pos=1;pos<=profesores.get_tam();pos++){
+		profesores.recorrer(pos,&p);
+		cout<<"Profesor:"<<endl;	
+		cout<<"Cedula: "<<p.getCedula()<<endl;
+		cout<<"Apellidos: "<<p.getApellidos()<<endl;
+		cout<<"Nombres: "<<p.getNombres()<<endl;
+		cout<<"Numero de clases: "<<p.getNumClases()<<endl;
+	}
+}
 
 void Controlador::mostrarListaCortes(Profesor p){
 	cout<<"Cortes:"<<endl;
@@ -165,6 +184,35 @@ void Controlador::insertarProfes(){
 	profesores=insertar.llenaProfes(profesores);
 	
 }
+void Controlador::mostrarProfe(Profesor p){
+	cout<<"Profesor:"<<endl;	
+	cout<<"Cedula: "<<p.getCedula()<<endl;
+	cout<<"Apellidos: "<<p.getApellidos()<<endl;
+	cout<<"Nombres: "<<p.getNombres()<<endl;
+	cout<<"Numero de clases: "<<p.getNumClases()<<endl;
+}
+void Controlador::modificarNomProfe(long long int id,Profesor p){
+	string nom;
+	cout<<"Ingrese el nuevo nombre: ";
+	cin.ignore();
+	getline(cin,nom,'\n');
+	for(int i = 0; i<nom.length(); i++){
+		p.setNombres(i,nom[i]);
+	}
+	getProfes().cambiar(id,p);
+}
+void Controlador::modificarApProfe(long long int id, Profesor p){
+	string apell;
+	cout<<"Ingrese el nuevo apellido: ";
+	cin.ignore();
+	getline(cin,apell,'\n');
+	for(int i = 0; i<apell.length(); i++){
+		p.setApellidos(i,apell[i]);
+	}
+	getProfes().cambiar(id,p);
+}
 
-
+void modificarNumClasesProfe(long long int id, Profesor p){
+	
+}
 #endif

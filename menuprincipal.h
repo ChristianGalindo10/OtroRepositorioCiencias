@@ -1,11 +1,12 @@
 #ifndef MENUPRINCIPAL_H     
 #define MENUPRINCIPAL_H
-
+using namespace std;
 class MenuPrincipal{
 	public:
 		void mostrarMenu(Controlador c);
 };
 void MenuPrincipal::mostrarMenu(Controlador c){
+	Profesor p;
 	int op;
 	while(op!=6){
 		system("cls");
@@ -63,10 +64,11 @@ void MenuPrincipal::mostrarMenu(Controlador c){
 				}
 				}
 				break;
-			case 2:
-				{
+			case 2:{
 				int op1;
 				while(op1!=5){
+					long long int id;
+					int op2;
 					system("cls");
 					cout << "\t-----------MENU MODIFICACIONES-----------" << endl << endl;
 					cout << "\t1. Profesores." << endl;
@@ -78,12 +80,52 @@ void MenuPrincipal::mostrarMenu(Controlador c){
 					cin >> op1;
 					system("cls");
 					switch(op1){
-						case 1:
-							cout << "Ingresar la cedula del profesor a modificar: " << endl;
-							cout << "Modificar al profesor elegido" << endl;
-							cout << "El profesor identificado con la cedula (n\xa3mero de la cedula) ha sido modificado exitosamente" << endl << endl;
+						case 1:{
+							int op2;
+							string nom;
+							c.mostrarProfes();
+							do{
+								cout << "Ingresar la cedula del profesor a modificar: " << endl;
+								cin>>id;
+								cout<<endl<<id<<endl;
+							}while(!c.getProfes().pertenece(id));
+							c.getProfes().buscar(id,&p);
+							system("cls");
+							c.mostrarProfe(p);
+							cout<<"Datos modificables:"<<endl;
+							cout<<"1.Apellidos: "<<endl;
+							cout<<"2.Nombres: "<<endl;
+							cout<<"3.Numero de clases: "<<endl;
+							cout<<"4.Volver"<<endl;
+							bool seguir=true;
+							while(seguir){
+								cout<<"Ingrese el número del atributo que quiere modificar: ";
+								cin>>op2;
+								switch(op2){
+									case 1:
+										c.modificarApProfe(id, p);
+										seguir = false;
+										break;
+									case 2:
+										c.modificarNomProfe(id,p);
+										seguir = false;
+										break;
+									case 3:
+										
+										break;
+									case 4:
+										seguir = false;
+										break;
+									default:
+										cout<<"Opcion invalida"<<endl;
+										break;
+								}
+							}
+							system("cls");
+							cout << "El profesor identificado con la cedula "<<id<<" ha sido modificado exitosamente" << endl << endl;
 							system("pause");
 							break;
+						}
 						case 2:
 							cout << "Ingresar el codigo o algo semejante que permita identificar el estudiante: " << endl;
 							cout << "Modificar estudiante el estudiante elegido" << endl;

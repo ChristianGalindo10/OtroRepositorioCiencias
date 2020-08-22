@@ -36,12 +36,16 @@ void Profesor::setApellidos(char &apell){
 	*apellidos = apell;
 }
 void Profesor::setApellidos(int pos, char letra){
+	for(int i=pos+1;i<50;i++)
+		apellidos[i]='\0';
 	apellidos[pos]=letra;
 }
 void Profesor::setNombres(char &nom){
 	*nombres=nom;
 }
 void Profesor::setNombres(int pos, char letra){
+	for(int i=pos+1;i<50;i++)
+		nombres[i]='\0';
 	nombres[pos]=letra;
 }
 void Profesor::setNumClases(int num){
