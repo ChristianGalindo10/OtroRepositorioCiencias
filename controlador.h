@@ -2,7 +2,7 @@
 #define CONTROLADOR_H
 
 #include <iostream>
-
+#include <stdlib.h>
 
 #include "lista.h"
 //Clases
@@ -35,6 +35,7 @@ class Controlador{
 	string ap;
 	string nom;
 	Tema t;
+	long long int *cedula;
 	public:	
 		Controlador(){
 			//Inicializar lista profesores
@@ -54,7 +55,9 @@ class Controlador{
 			t.setCodigo(1000);
 			t.setNombre("temaEjemplo");
 			temas = lista<Tema>(t);
+			
 		};
+		
 		void iniciar();
 		//Métodos para manejar listas
 		void mostrarListaProfes();
@@ -85,6 +88,11 @@ class Controlador{
 		//Métodos de escritura
 		void escribirArchivos();
 		
+		//Métodos clases
+		void mostrarCedulas();
+		void crearCedulas();
+		
+		
 };
 
 void Controlador::escribirArchivos(){
@@ -97,6 +105,7 @@ lista<Profesor> Controlador::getProfes(){
 
 void Controlador::leerProfes(){
 	profesores=lecArchivos.lecturaProfesores(profesores);
+	crearCedulas();
 }
 
 void Controlador::setProfes(lista<Profesor> ps){
@@ -182,6 +191,7 @@ void Controlador::mostrarListaEvaluaciones(Contenedor ct){
 
 void Controlador::insertarProfes(){
 	profesores=insertar.llenaProfes(profesores);
+	crearCedulas();
 	
 }
 void Controlador::mostrarProfe(Profesor p){
@@ -212,7 +222,19 @@ void Controlador::modificarApProfe(long long int id, Profesor p){
 	getProfes().cambiar(id,p);
 }
 
-void modificarNumClasesProfe(long long int id, Profesor p){
-	
+void Controlador::mostrarCedulas(){
+	cout<<"Mostrar cedulas"<<endl;
+	for(int i=1;i<=profesores.get_tam();i++){
+		cout<<cedula[i]<<endl;
+	}
+}
+
+void Controlador::crearCedulas(){
+	//Crear arreglo dinamico de cedulas
+	cedula = new long long int[profesores.get_tam()];
+	for(int i= 1; i<=profesores.get_tam();i++){
+		profesores.recorrer(i,&p);
+		cedula[i]=p.getCedula();
+	}
 }
 #endif

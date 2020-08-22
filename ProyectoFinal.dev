@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=19
+UnitCount=15
 
 [VersionInfo]
 Major=1
@@ -191,7 +191,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=menuinsercion.h
+FileName=controlador.h
 CompileCpp=1
 Folder=
 Compile=1

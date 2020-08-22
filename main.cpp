@@ -8,7 +8,10 @@ using namespace std;
 int main(int argc, char** argv) {
 	Controlador controlador = Controlador();
 	controlador.leerProfes();
+	//controlador.crearCedulas();
+	controlador.mostrarCedulas();
 	MenuPrincipal menu;
-	menu.mostrarMenu(controlador);
+	//menu.mostrarMenu(controlador);
+	
 	return 0;
 }
